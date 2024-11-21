@@ -1,10 +1,14 @@
 {
   "name": "techhub-app",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=20 <21"
+  },
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng serve\" \"node server/js/server.js\"",
     "build": "ng build",
+    "prebuild": "cd server && npm install",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
