@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"ng serve\" \"node server/js/server.js\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -17,8 +17,8 @@
     "@angular/forms": "^18.0.0",
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
-    "bootstrap-icons": "^1.11.3",
     "@angular/router": "^18.0.0",
+    "bootstrap-icons": "^1.11.3",
     "primeflex": "^3.3.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -29,6 +29,7 @@
     "@angular/cli": "^18.0.7",
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
+    "concurrently": "^9.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

@@ -8,6 +8,8 @@
 
 # Node
 /node_modules
+/server/node_modules
+/server/package-lock.json
 npm-debug.log
 yarn-error.log
 
@@ -40,3 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+package-lock.json

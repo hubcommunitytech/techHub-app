@@ -1,0 +1,11 @@
+<div *ngIf="items.length">
+  <h3>Itens:</h3>
+  <ul>
+    <li *ngFor="let item of items">
+      {{ item.title }} - {{ item.description }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="!items.length">
+  <p>Nenhum item encontrado.</p>
+</div>
