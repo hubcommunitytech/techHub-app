@@ -7,6 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng serve\" \"node server/js/server.js\"",
+    "startserver": "node server/js/server.js",
     "build": "ng build",
     "prebuild": "cd server && npm install",
     "watch": "ng build --watch --configuration development",

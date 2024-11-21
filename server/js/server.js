@@ -6,10 +6,11 @@ const db = require('./db');
 const setupSwagger = require('./swagger');
 const app = express();
 setupSwagger(app);
+const angularDistPath = path.join(__dirname, '../../dist/techhub-app/browser');
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../../dist/techhub-app/browser/index.html')));
+app.use(express.static(angularDistPath));
 
 // Rotas CRUD
 /**
@@ -225,7 +226,8 @@ app.delete('/api/items/:id', (req, res) => {
 
 // Redireciona para o Angular
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/techhub-app/browser/index.html'));
+  console.log("Path", angularDistPath)
+  res.sendFile(path.join(angularDistPath, 'index.html'));
 });
 
 
