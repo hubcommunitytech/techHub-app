@@ -8,6 +8,7 @@ const app = express();
 setupSwagger(app);
 const angularDistPath = path.join(__dirname, '../../dist/techhub-app/browser');
 // Middleware
+require('dotenv').config();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(angularDistPath));

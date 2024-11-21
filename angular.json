@@ -10,6 +10,9 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "pt"
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -37,11 +40,16 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/env/environment.ts",
+                  "with": "src/env/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "3MB",
-                  "maximumError": "5MB"
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5mb"
                 }
               ],
               "outputHashing": "all"

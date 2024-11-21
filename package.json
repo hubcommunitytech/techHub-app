@@ -1,6 +1,6 @@
 {
   "name": "techhub-app",
-  "version": "0.0.0",
+  "version": "1.0",
   "engines": {
     "node": ">=20 <21"
   },
@@ -9,6 +9,7 @@
     "start": "concurrently \"ng serve\" \"node server/js/server.js\"",
     "startserver": "node server/js/server.js",
     "build": "ng build",
+    "build:prod": "ng build --configuration=production --base-href=/techhub-app/",
     "prebuild": "cd server && npm install",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
