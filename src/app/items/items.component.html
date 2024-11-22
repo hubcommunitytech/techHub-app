@@ -1,6 +1,6 @@
 <section class="w-full items">
   <section class="py-3 w-full gap-1 flex justify-content-end">
-    <button class="btn_" *ngIf="isAdm">
+    <button *ngIf="isAdm" class="btn_ add" (click)="genItem()">
       <i class="bi px-1 pointer bi-plus"></i>
     </button>
     <section class="search_ border-1 surface-border border-round">
@@ -44,7 +44,7 @@
               <button *ngIf="isAdm" class="btn_ del" (click)="open(item)">
                 <i class="bi px-1 pointer bi-trash2"></i>
               </button>
-              <button *ngIf="isAdm" class="btn_ edit" (click)="open(item)">
+              <button *ngIf="isAdm" class="btn_ edit" (click)="genItem(item)">
                 <i class="bi px-1 pointer bi-pencil-fill"></i>
               </button>
               <button class="btn_ view" (click)="open(item)">

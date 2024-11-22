@@ -42,6 +42,7 @@ export class AppComponent implements OnInit {
     const logoutIndex = this.items.findIndex(item => item.route === 'logout');
 
     if (isAuthenticated && logoutIndex === -1) {
+      this.items.push({ name: 'Projetos', icon: 'bi-card-list', route: 'admin' });
       this.items.push({ name: 'Sair', icon: 'bi-arrow-left-square', route: 'logout' });
     } else if (!isAuthenticated && logoutIndex !== -1) {
       this.items.splice(logoutIndex, 1);

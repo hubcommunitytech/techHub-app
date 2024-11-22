@@ -5,6 +5,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { SkeletonModule } from 'primeng/skeleton';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { ModalGenComponent } from '../util/modal-gen.component';
 import { ModalViewComponent } from '../util/modal-view.component';
 import { Count, Project } from './items';
 import { ItemsService } from './items.service';
@@ -80,6 +81,15 @@ export class ItemsComponent implements OnInit {
     this.dialogService.open(ModalViewComponent, {
       data: p,
       header: p.title,
+      width: '80%',
+      height: '80%',
+    });
+  }
+
+  genItem(p?: Project): void {
+    this.dialogService.open(ModalGenComponent, {
+      data: p,
+      header: p ? p.title : 'Criar item',
       width: '80%',
       height: '80%',
     });
