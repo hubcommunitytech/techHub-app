@@ -1,3 +1,22 @@
-<section class="w-full h-full flex justify-content-center align-content-center">
-  <p>Em construção</p>
+<section class="w-full info_ px-2 h-full flex flex-column justify-content-center align-content-center">
+  <section class="w-full h_ py-3 flex gap-1 flex-column">
+    @for (i of infos; track $index) {
+    <p class="title">{{i.titulo}}</p>
+    <p class="about"> • {{i.texto}}</p>
+    }
+  </section>
+  <div class="card_items p-2">
+    <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+      <ng-template pTemplate="marker" let-event>
+        <span
+          class="flex surface-500 w-1rem h-1rem align-items-center justify-content-center text-white border-circle z-1 shadow-1">
+        </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+        <p-card [header]="event.name">
+          <div [innerHTML]="event.about"></div>
+        </p-card>
+      </ng-template>
+    </p-timeline>
+  </div>
 </section>

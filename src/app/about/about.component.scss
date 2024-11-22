@@ -1,7 +1,18 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+.info_ {
+  .h_ {
+    .title {
+      color: var(--surface-700);
+      font-weight: 700;
+    }
+
+    .about {
+      color: var(--surface-500);
+    }
+  }
+
+
+
+  .card_items {
+    overflow: auto;
+  }
 }

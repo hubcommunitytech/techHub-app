@@ -24,7 +24,17 @@ import { Project } from "../items/items";
   </section>
   <section class="w-full h-full overflow-hidden shadow-2 border-round">
     @if(safeUrl){
-      <iframe [src]="safeUrl" width="100%" height="100%" frameborder="0"></iframe>
+      <iframe 
+        [src]="safeUrl"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        allow="fullscreen"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        title="Prévia do site">
+      </iframe>
     }
   </section>
   </section>
