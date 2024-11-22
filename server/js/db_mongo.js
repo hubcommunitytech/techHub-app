@@ -2,7 +2,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
 
 
-const uri = process.env.DB_URL || 'mongodb+srv://hub_db:hub_db@techhub-db.doja6.mongodb.net/?retryWrites=true&w=majority&appName=techhub-db';
+const uri = 'mongodb+srv://hub_db:hub_db@techhub-db.doja6.mongodb.net/?retryWrites=true&w=majority&appName=techhub-db';
 // Função para conectar ao MongoDB
 const client = new MongoClient(uri, {
   serverApi: {
