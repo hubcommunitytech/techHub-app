@@ -1,5 +1,8 @@
 <section class="w-full items">
-  <section class="py-3 w-full flex justify-content-end">
+  <section class="py-3 w-full gap-1 flex justify-content-end">
+    <button class="btn_" *ngIf="isAdm">
+      <i class="bi px-1 pointer bi-plus"></i>
+    </button>
     <section class="search_ border-1 surface-border border-round">
       <input type="text" placeholder="Digite para pesquisar" [(ngModel)]="searchValue" (keyup)="onSearchChange()" />
       <i class="bi px-1 pointer bi-search"></i>
@@ -37,8 +40,14 @@
               <strong>Descrição:</strong>
               {{ item.description.length > 150 ? item.description.slice(0, 150) + '...' : item?.description }}
             </p>
-            <section class="text-right">
-              <button class="btn_" (click)="open(item)">
+            <section class="flex justify-content-end gap-1">
+              <button *ngIf="isAdm" class="btn_ del" (click)="open(item)">
+                <i class="bi px-1 pointer bi-trash2"></i>
+              </button>
+              <button *ngIf="isAdm" class="btn_ edit" (click)="open(item)">
+                <i class="bi px-1 pointer bi-pencil-fill"></i>
+              </button>
+              <button class="btn_ view" (click)="open(item)">
                 <i class="bi px-1 pointer bi-eye"></i>
               </button>
             </section>

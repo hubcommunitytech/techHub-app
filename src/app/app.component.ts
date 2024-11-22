@@ -1,26 +1,54 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { InfosComponent } from "./infos/infos.component";
+import { ToastModule } from 'primeng/toast';
+import { Subscription } from 'rxjs';
+import { AdminService } from './admin/admin.service';
+import { InfosComponent } from './infos/infos.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, InfosComponent, NgFor, NgClass],
+  imports: [RouterOutlet, InfosComponent, ToastModule, NgFor, NgClass],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'techhub-app';
   items = [
     { name: 'Home', icon: 'bi-house', route: 'home' },
     { name: 'Sobre', icon: 'bi-info-square', route: 'about' },
-  ]
-  constructor(
-    private router: Router
-  ) { }
+  ];
+  private authSubscription?: Subscription;
+
+  constructor(private router: Router, private auth: AdminService) { }
 
   navigate(r: string) {
-    this.router.navigate([r]);
+    if (r === 'logout') {
+      this.auth.logout();
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate([r]);
+    }
+  }
+
+  ngOnInit(): void {
+    this.authSubscription = this.auth.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.updateMenu(isAuthenticated);
+    });
+  }
+
+  private updateMenu(isAuthenticated: boolean): void {
+    const logoutIndex = this.items.findIndex(item => item.route === 'logout');
+
+    if (isAuthenticated && logoutIndex === -1) {
+      this.items.push({ name: 'Sair', icon: 'bi-arrow-left-square', route: 'logout' });
+    } else if (!isAuthenticated && logoutIndex !== -1) {
+      this.items.splice(logoutIndex, 1);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription?.unsubscribe();
   }
 }

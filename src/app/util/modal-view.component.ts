@@ -58,7 +58,6 @@ export class ModalViewComponent implements OnInit {
         this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data.link_aplication);
       }
     }
-    console.log(data)
   }
 
   open() {

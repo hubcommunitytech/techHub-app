@@ -8,25 +8,46 @@ import { Count, Project } from './items';
   providedIn: 'root'
 })
 export class ItemsService {
-  private api = `${environment.API_URL}`;
+  private api = `${environment.API_URL}/items`;
 
   constructor(private http: HttpClient) { }
 
-  getData(first: number, rows: number) {
-    return this.http.get<Project[]>(`${this.api}/items?first=${first}&rows=${rows}`);
+  // Obtém a lista de itens com paginação
+  getData(first: number, rows: number): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.api}?first=${first}&rows=${rows}`);
   }
 
-  getTotalItems() {
-    return this.http.get<Count>(`${this.api}/items/count`);
+  // Obtém o número total de itens
+  getTotalItems(): Observable<Count> {
+    return this.http.get<Count>(`${this.api}/count`);
   }
 
+  // Pesquisa itens por um termo, com paginação
   searchItems(query: string, first: number, rows: number): Observable<Project[]> {
     let params = new HttpParams()
       .set('query', query)
       .set('first', first.toString())
       .set('rows', rows.toString());
-
-    return this.http.get<Project[]>(`${this.api}/items`, { params });
+    return this.http.get<Project[]>(this.api, { params });
   }
 
+  // Cria um novo item
+  createItem(item: Project): Observable<Project> {
+    return this.http.post<Project>(this.api, item);
+  }
+
+  // Adiciona múltiplos itens em uma única chamada
+  createItemsBulk(items: Project[]): Observable<Project[]> {
+    return this.http.post<Project[]>(`${this.api}/bulk`, items);
+  }
+
+  // Atualiza um item existente
+  updateItem(id: string, item: Partial<Project>): Observable<void> {
+    return this.http.put<void>(`${this.api}/${id}`, item);
+  }
+
+  // Remove um item pelo ID
+  deleteItem(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${id}`);
+  }
 }

@@ -1,4 +1,32 @@
+<button class="btn_modal" (click)="openModal()">
+  <i class="bi bi-person-circle"></i>
+</button>
 <a class="github" href="https://github.com/hubcommunitytech" target="_blank">
   <i class="bi bi-github"></i>
 </a>
 <p>{{ getDate() }}</p>
+
+<p-dialog header="Login" [(visible)]="visible" [style]="{ width: '25rem' }">
+  <form [formGroup]="form">
+    <section class="flex flex-column gap-2">
+      <div class="flex flex-column gap-2">
+        <label for="username">Usuario</label>
+        <input pInputText id="username" aria-describedby="username-help" formControlName="user" />
+        <small *ngIf="form.get('user')?.hasError('required') && form.get('user')?.touched" id="username-help">
+          Usuário é obrigatório.
+        </small>
+      </div>
+      <div class="flex flex-column gap-2">
+        <label for="username">Senha</label>
+        <p-password styleClass="w-full" formControlName="pass" [feedback]="false" />
+        <small *ngIf="form.get('pass')?.hasError('required') && form.get('pass')?.touched" id="username-help">
+          Senha é obrigatória.
+        </small>
+      </div>
+    </section>
+  </form>
+  <div class="flex justify-content-end pt-4 gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
+    <p-button label="Entrar" (onClick)="login()" />
+  </div>
+</p-dialog>

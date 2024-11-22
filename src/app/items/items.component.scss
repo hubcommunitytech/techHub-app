@@ -15,14 +15,13 @@
 
   button {
     all: unset;
-    background: #B88B63;
     color: white;
     border-radius: var(--border-radius);
     padding: .25rem;
     cursor: pointer;
 
     i {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
   }
 
@@ -41,6 +40,19 @@
   .list {
     width: max-content;
     max-width: 100%;
+  }
 
+  .view {
+    background: #B88B63;
+  }
+
+  .edit {
+    background: #FEDDC7;
+    color: #AE510F;
+  }
+
+  .del {
+    background: var(--red-200);
+    color: var(--red-500);
   }
 }

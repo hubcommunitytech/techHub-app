@@ -1,5 +1,5 @@
 import { NgFor, NgIf, NgStyle } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PaginatorModule } from 'primeng/paginator';
@@ -19,6 +19,7 @@ import { ItemsService } from './items.service';
   viewProviders: [DialogService]
 })
 export class ItemsComponent implements OnInit {
+  @Input() isAdm: boolean = false;
   items: Project[] = [];
   filteredItems: Project[] = [];
   totalRecords!: number;
