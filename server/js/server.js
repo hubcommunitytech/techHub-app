@@ -56,17 +56,32 @@ app.get('/api/items', async (req, res) => {
     const database = await db.connect();
     const collection = database.collection('items');
 
-    const { first, rows } = req.query;
+    // Recupera os parâmetros de consulta da URL
+    const { first, rows, query } = req.query;
     const skip = parseInt(first);
     const limit = parseInt(rows);
 
-    const items = await collection.find().skip(skip).limit(limit).toArray();
+    // Construa o filtro de busca baseado no query (se fornecido)
+    const searchFilter = query ? {
+      $or: [
+        { title: { $regex: query, $options: 'i' } },  // Pesquisa no título (case-insensitive)
+        { description: { $regex: query, $options: 'i' } }  // Pesquisa na descrição (case-insensitive)
+      ]
+    } : {};
+
+    // Recupera os itens com o filtro de busca e a paginação
+    const items = await collection.find(searchFilter)
+      .skip(skip)
+      .limit(limit)
+      .toArray();
 
     res.json(items);
   } catch (err) {
+    console.error(err);
     res.status(500).send('Erro ao buscar itens');
   }
 });
+
 
 app.get('/api/items/count', async (req, res) => {
   try {

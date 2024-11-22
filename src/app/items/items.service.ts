@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../env/environment';
 import { Count, Project } from './items';
 
@@ -18,6 +18,15 @@ export class ItemsService {
 
   getTotalItems() {
     return this.http.get<Count>(`${this.api}/items/count`);
+  }
+
+  searchItems(query: string, first: number, rows: number): Observable<Project[]> {
+    let params = new HttpParams()
+      .set('query', query)
+      .set('first', first.toString())
+      .set('rows', rows.toString());
+
+    return this.http.get<Project[]>(`${this.api}/items`, { params });
   }
 
 }

@@ -1,8 +1,8 @@
-<section class="w-full items">
+<!-- <section class="w-full items">
   <section class="py-3 w-full flex justify-content-end">
     <section class="search_ border-1 surface-border border-round">
       <input type="text" placeholder="Digite para pesquisar" />
-      <i class="bi px-1 pointer bi-search"></i>
+      <i class="bi px-1 pointer bi-search" [(ngModel)]="value"></i>
     </section>
   </section>
   <section class="list border-round flex flex-column justify-content-between p-2 border-1 surface-border">
@@ -33,6 +33,48 @@
         <p class="text-center text-gray-500">No items found</p>
       </section>
       }
+    </section>
+    <section class="w-full">
+      <p-paginator [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions"
+        (onPageChange)="onPageChange($event)"></p-paginator>
+    </section>
+  </section>
+</section> -->
+
+<section class="w-full items">
+  <section class="py-3 w-full flex justify-content-end">
+    <section class="search_ border-1 surface-border border-round">
+      <input type="text" placeholder="Digite para pesquisar" [(ngModel)]="searchValue" (keyup)="onSearchChange()" />
+      <i class="bi px-1 pointer bi-search"></i>
+    </section>
+  </section>
+  <section class="list border-round flex flex-column justify-content-between p-2 border-1 surface-border">
+    <section class="flex-wrap p-2 flex gap-3">
+      <ng-container *ngIf="filteredItems.length > 0; else noItems">
+        <section *ngFor="let item of filteredItems; let i = index"
+          class="border-1 card border-round p-2 flex gap-2 shadow-1 flex-column surface-border">
+          <section class="h-auto px-2">
+            <div class="img_ shadow-2" [ngStyle]="{'background-image': 'url(' + item?.photo + ')'}"></div>
+          </section>
+          <section class="flex flex-column h-full justify-content-between">
+            <p class="font-semibold"><strong>Nome:</strong> {{item.title}}</p>
+            <p>
+              <strong>Descrição:</strong>
+              {{ item.description.length > 150 ? item.description.slice(0, 150) + '...' : item?.description }}
+            </p>
+            <section class="text-right">
+              <button class="btn_" (click)="open(item)">
+                <i class="bi px-1 pointer bi-eye"></i>
+              </button>
+            </section>
+          </section>
+        </section>
+      </ng-container>
+      <ng-template #noItems>
+        <section class="w-full h-10rem text-center">
+          <p class="text-center text-gray-500">Nenhum item encontrado</p>
+        </section>
+      </ng-template>
     </section>
     <section class="w-full">
       <p-paginator [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions"

@@ -12,9 +12,9 @@ import { Project } from "../items/items";
   <p class="m-0 font-semibold"><strong>Descrição:</strong> {{obj.description}}</p>
   <section class="flex w-full justify-content-between">
     <section class="flex flex-column gap-1">
-      <p class="m-0 text-xl font-bold">Previa</p>
+      <p class="m-0 font-bold">Previa do site:</p>
       <span class="m-0 font-semibold">
-        <strong>Observação:</strong> Para uma melhor experiência ou caso encontre algum erro, clique no botão <em>"Abrir Site"</em> para acessar o projeto diretamente.
+        <strong>Observação:</strong> Para uma melhor experiência ou caso encontre algum erro, clique no botão <strong>"Abrir Site"</strong> para acessar o projeto diretamente.
       </span>
     </section>
     <button class="success doc_ theme" (click)="open()">Abrir Site <i class="bi bi-box-arrow-up-right"></i></button>
@@ -42,7 +42,7 @@ export class ModalViewComponent implements OnInit {
     if (data) {
       this.obj = data;
       if (data.link_aplication) {
-        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:4200');
+        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(data.link_aplication);
       }
     }
     console.log(data)
