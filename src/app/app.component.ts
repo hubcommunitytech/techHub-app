@@ -40,12 +40,20 @@ export class AppComponent implements OnInit {
 
   private updateMenu(isAuthenticated: boolean): void {
     const logoutIndex = this.items.findIndex(item => item.route === 'logout');
+    const projectIndex = this.items.findIndex(item => item.route === 'admin');
 
-    if (isAuthenticated && logoutIndex === -1) {
-      this.items.push({ name: 'Projetos', icon: 'bi-card-list', route: 'admin' });
-      this.items.push({ name: 'Sair', icon: 'bi-arrow-left-square', route: 'logout' });
-    } else if (!isAuthenticated && logoutIndex !== -1) {
-      this.items.splice(logoutIndex, 1);
+    if (isAuthenticated) {
+      if (logoutIndex === -1) {
+        this.items.push({ name: 'Projetos', icon: 'bi-card-list', route: 'admin' });
+        this.items.push({ name: 'Sair', icon: 'bi-arrow-left-square', route: 'logout' });
+      }
+    } else {
+      if (logoutIndex !== -1) {
+        this.items.splice(logoutIndex, 1);
+      }
+      if (projectIndex !== -1) {
+        this.items.splice(projectIndex, 1);
+      }
     }
   }
 
