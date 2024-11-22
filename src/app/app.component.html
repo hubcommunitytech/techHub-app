@@ -4,5 +4,7 @@
     <span class="cursor-pointer" (click)="navigate(item.route)" *ngFor="let item of items"> <i class="bi pr-1"
         [ngClass]="item.icon"></i>{{item.name}}</span>
   </section>
-  <router-outlet></router-outlet>
+  <section class="h-auto w-full">
+    <router-outlet></router-outlet>
+  </section>
 </section>

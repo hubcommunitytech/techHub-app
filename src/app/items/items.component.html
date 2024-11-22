@@ -1,11 +1,28 @@
-<div *ngIf="items.length">
-  <h3>Itens:</h3>
-  <ul>
-    <li *ngFor="let item of items">
-      {{ item.title }} - {{ item.description }}
-    </li>
-  </ul>
-</div>
-<div *ngIf="!items.length">
-  <p>Nenhum item encontrado.</p>
-</div>
+<section class="w-full items">
+  <section class="py-3 w-full flex justify-content-end">
+    <section class="search_ border-1 surface-border border-round">
+      <input type="text" placeholder="Digite para pesquisar" />
+      <i class="bi px-1 pointer bi-search"></i>
+    </section>
+  </section>
+  <section class="w-full border-round flex flex-column justify-content-between p-2 border-1 surface-border">
+    <section class="flex-wrap flex gap-3">
+      @for (item of items; track $index) {
+      <section class="border-1 px-1 w-20rem border-round p-2 flex gap-2 shadow-1 flex-column gap-1 surface-border">
+        <img class="h-10rem w-auto border-round shadow-2" [src]="item?.photo">
+        <p class="font-semibold"><strong>Nome:</strong> {{item.title}}</p>
+        <p class=""><strong>Descrição:</strong> {{item?.description}}</p>
+        <a [href]="item.link_aplication" target="_blank" rel="noopener noreferrer">sadas</a>
+      </section>
+      }@empty {
+      <section class="w-full h-10rem text-center">
+        <p class="text-center text-gray-500">No items found</p>
+      </section>
+      }
+    </section>
+    <section class="w-full">
+      <p-paginator [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="rowsPerPageOptions"
+        (onPageChange)="onPageChange($event)"></p-paginator>
+    </section>
+  </section>
+</section>

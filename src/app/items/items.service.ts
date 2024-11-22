@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../env/environment';
+import { Count, Project } from './items';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,11 @@ export class ItemsService {
 
   constructor(private http: HttpClient) { }
 
-  getData() {
-    return this.http.get(`${this.api}/items`);
+  getData(first: number, rows: number) {
+    return this.http.get<Project[]>(`${this.api}/items?first=${first}&rows=${rows}`);
   }
 
+  getTotalItems() {
+    return this.http.get<Count>(`${this.api}/items/count`);
+  }
 }
