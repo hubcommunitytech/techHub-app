@@ -21,7 +21,8 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "crypto": ["./node_modules/crypto-js"]
+      "crypto": ["./node_modules/crypto-js"],
+      "assets": ["./src/assets/*"]
     }
   },
   "angularCompilerOptions": {

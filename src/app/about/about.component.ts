@@ -33,7 +33,6 @@ export class AboutComponent {
     return [
       {
         name: 'O Que é o Tech Hub?',
-        date: '15/10/2020 10:30',
         about: `
           <p>
             O Tech Hub é uma plataforma centralizada projetada para unir estudantes, professores, pesquisadores e profissionais do setor de tecnologia. Nosso objetivo é ser o ponto de encontro digital definitivo para quem deseja:
@@ -44,11 +43,11 @@ export class AboutComponent {
             <li><b>Conectar:</b> Estabelecer contatos com outros profissionais, acadêmicos e instituições de renome.</li>
             <li><b>Divulgar:</b> Publicar artigos, pesquisas e estudos de caso para alcançar um público global.</li>
           </ul>
+          <img class="h-15rem" src="assets/image.png" />
         `
       },
       {
         name: 'Nossa Proposta de Valor',
-        date: '15/10/2020 10:30',
         about: `
           <p>
             No Tech Hub, acreditamos que o conhecimento cresce ao ser compartilhado. Por isso, criamos um ambiente colaborativo e inclusivo onde você pode:
@@ -60,7 +59,6 @@ export class AboutComponent {
       },
       {
         name: 'Quem Somos?',
-        date: '15/10/2020 10:30',
         about: `
           <p>
             Somos um time apaixonado por tecnologia, formado por educadores, pesquisadores e desenvolvedores que entendem os desafios e oportunidades do mundo da computação. Trabalhamos para construir uma comunidade global unida pelo propósito de transformar a tecnologia em um agente de mudança positiva.

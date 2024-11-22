@@ -89,9 +89,8 @@ export class ItemsComponent implements OnInit {
   genItem(p?: Project): void {
     this.dialogService.open(ModalGenComponent, {
       data: p,
-      header: p ? p.title : 'Criar item',
-      width: '80%',
-      height: '80%',
+      header: p ? p.title : 'Criar Projeto',
+      width: '50%',
     });
   }
 }

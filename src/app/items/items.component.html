@@ -41,7 +41,7 @@
               {{ item.description.length > 150 ? item.description.slice(0, 150) + '...' : item?.description }}
             </p>
             <section class="flex justify-content-end gap-1">
-              <button *ngIf="isAdm" class="btn_ del" (click)="open(item)">
+              <button *ngIf="isAdm" class="btn_ del">
                 <i class="bi px-1 pointer bi-trash2"></i>
               </button>
               <button *ngIf="isAdm" class="btn_ edit" (click)="genItem(item)">
