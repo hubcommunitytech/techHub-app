@@ -11,7 +11,12 @@
       <section class="border-1 px-1 w-20rem border-round p-2 flex gap-2 shadow-1 flex-column gap-1 surface-border">
         <img class="h-10rem w-auto border-round shadow-2" [src]="item?.photo">
         <p class="font-semibold"><strong>Nome:</strong> {{item.title}}</p>
-        <p class=""><strong>Descrição:</strong> {{item?.description}}</p>
+        <p><strong>Descrição:</strong> {{
+          item.description.length > 150 ?
+          item.description.slice(0, 150) + '...' :
+          item?.description
+          }}</p>
+
         <a [href]="item.link_aplication" target="_blank" rel="noopener noreferrer">sadas</a>
       </section>
       }@empty {
