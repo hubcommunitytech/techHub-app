@@ -1,19 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { Project } from "../items/items";
 
 @Component({
   selector: 'app-modal-view',
-  imports: [],
+  imports: [ScrollPanelModule],
   standalone: true,
   template: `
   <section class="w-full flex flex-column gap-2 h-full">
-  <p class="m-0 font-semibold"><strong>Descrição:</strong> {{obj.description}}</p>
-  <section class="flex w-full justify-content-between">
+  <p-scrollPanel [style]="{ width: '100%', height: 'auto', 'max-height':'5rem' }">
+   <p class="text-sm lg:text-base m-0 font-semibold"><strong>Descrição:</strong> {{obj.description}}</p>
+  </p-scrollPanel>
+  <section class="flex w-full flex-column gap-1 lg:flex-row justify-content-between">
     <section class="flex flex-column gap-1">
       <p class="m-0 font-bold">Previa do site:</p>
-      <span class="m-0 font-semibold">
+      <span class="m-0 font-semibold text-sm lg:text-base">
         <strong>Observação:</strong> Para uma melhor experiência ou caso encontre algum erro, clique no botão <strong>"Abrir Site"</strong> para acessar o projeto diretamente.
       </span>
     </section>
