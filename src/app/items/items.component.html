@@ -5,19 +5,28 @@
       <i class="bi px-1 pointer bi-search"></i>
     </section>
   </section>
-  <section class="w-full border-round flex flex-column justify-content-between p-2 border-1 surface-border">
-    <section class="flex-wrap flex gap-3">
+  <section class="list border-round flex flex-column justify-content-between p-2 border-1 surface-border">
+    <section class="flex-wrap p-2 flex gap-3">
       @for (item of items; track $index) {
-      <section class="border-1 px-1 w-20rem border-round p-2 flex gap-2 shadow-1 flex-column gap-1 surface-border">
-        <img class="h-10rem w-auto border-round shadow-2" [src]="item?.photo">
-        <p class="font-semibold"><strong>Nome:</strong> {{item.title}}</p>
-        <p><strong>Descrição:</strong> {{
-          item.description.length > 150 ?
-          item.description.slice(0, 150) + '...' :
-          item?.description
-          }}</p>
+      <section class="border-1 card border-round p-2 flex gap-2 shadow-1 flex-column surface-border">
+        <section class="h-auto px-2">
+          <div class="img_ shadow-2" [ngStyle]="{'background-image': 'url(' + item?.photo + ')'}">
+          </div>
+        </section>
 
-        <a [href]="item.link_aplication" target="_blank" rel="noopener noreferrer">sadas</a>
+        <section class="flex flex-column h-full justify-content-between">
+          <p class="font-semibold"><strong>Nome:</strong> {{item.title}}</p>
+          <p><strong>Descrição:</strong> {{
+            item.description.length > 150 ?
+            item.description.slice(0, 150) + '...' :
+            item?.description
+            }}</p>
+          <section class="text-right">
+            <button class="btn_" (click)="open(item)">
+              <i class="bi px-1 pointer bi-eye"></i>
+            </button>
+          </section>
+        </section>
       </section>
       }@empty {
       <section class="w-full h-10rem text-center">

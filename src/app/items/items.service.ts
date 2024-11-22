@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../env/environment';
 import { Count, Project } from './items';
 
@@ -18,4 +19,5 @@ export class ItemsService {
   getTotalItems() {
     return this.http.get<Count>(`${this.api}/items/count`);
   }
+
 }

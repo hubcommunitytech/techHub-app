@@ -13,3 +13,14 @@ body {
   width: 100%;
   height: 100dvh;
 }
+
+.doc_ {
+  all: unset;
+  border-radius: var(--border-radius);
+  padding: .5rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--blue-500) !important;
+  background: var(--blue-200) !important;
+  height: max-content;
+}

@@ -1,0 +1,57 @@
+import { Component, OnInit } from "@angular/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { Project } from "../items/items";
+
+@Component({
+  selector: 'app-modal-view',
+  imports: [],
+  standalone: true,
+  template: `
+  <section class="w-full flex flex-column gap-2 h-full">
+  <p class="m-0 font-semibold"><strong>Descrição:</strong> {{obj.description}}</p>
+  <section class="flex w-full justify-content-between">
+    <section class="flex flex-column gap-1">
+      <p class="m-0 text-xl font-bold">Previa</p>
+      <span class="m-0 font-semibold">
+        <strong>Observação:</strong> Para uma melhor experiência ou caso encontre algum erro, clique no botão <em>"Abrir Site"</em> para acessar o projeto diretamente.
+      </span>
+    </section>
+    <button class="success doc_ theme" (click)="open()">Abrir Site <i class="bi bi-box-arrow-up-right"></i></button>
+  </section>
+  <section class="w-full h-full overflow-hidden shadow-2 border-round">
+    @if(safeUrl){
+      <iframe [src]="safeUrl" width="100%" height="100%" frameborder="0"></iframe>
+    }
+  </section>
+  </section>
+  `
+})
+export class ModalViewComponent implements OnInit {
+  safeUrl: SafeResourceUrl | null = null;
+  fileExterno: boolean = false;
+  link: string | null = null;
+  obj!: Project;
+  constructor(
+    private sanitizer: DomSanitizer,
+    private config: DynamicDialogConfig
+  ) { }
+
+  ngOnInit(): void {
+    const data = this.config.data as Project;
+    if (data) {
+      this.obj = data;
+      if (data.link_aplication) {
+        this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:4200');
+      }
+    }
+    console.log(data)
+  }
+
+  open() {
+    const link = this.obj?.link_aplication;
+    if (link) {
+      window.open(link, '_blank');
+    }
+  }
+}

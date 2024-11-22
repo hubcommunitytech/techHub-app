@@ -1,5 +1,30 @@
 .items {
-  height: 60dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .img_ {
+    width: auto;
+    max-width: 100%;
+    height: 10rem;
+    border-radius: var(--border-radius);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  button {
+    all: unset;
+    background: #B88B63;
+    color: white;
+    border-radius: var(--border-radius);
+    padding: .25rem;
+    cursor: pointer;
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
 
   .search_ {
     padding: .5rem;
@@ -7,5 +32,15 @@
     input {
       all: unset;
     }
+  }
+
+  .card {
+    width: 20rem;
+  }
+
+  .list {
+    width: max-content;
+    max-width: 100%;
+
   }
 }
